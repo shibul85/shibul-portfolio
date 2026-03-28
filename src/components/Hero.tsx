@@ -31,10 +31,13 @@ export default function Hero() {
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({
-        x: (e.clientX / window.innerWidth - 0.5) * 20,
-        y: (e.clientY / window.innerHeight - 0.5) * 20,
-      });
+      // Only run on non-touch devices or check for hover capability
+      if (window.matchMedia('(hover: hover)').matches) {
+        setMousePos({
+          x: (e.clientX / window.innerWidth - 0.5) * 20,
+          y: (e.clientY / window.innerHeight - 0.5) * 20,
+        });
+      }
     };
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
@@ -47,14 +50,14 @@ export default function Hero() {
           x: mousePos.x, 
           y: mousePos.y,
         }}
-        className="max-w-7xl mx-auto w-full text-center space-y-12 z-10"
+        className="max-w-7xl mx-auto w-full text-center space-y-8 md:space-y-12 z-10"
       >
-        <div className="space-y-8">
+        <div className="space-y-6 md:space-y-8">
           <motion.div
             initial={{ opacity: 0, scale: 0.8, y: -20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="inline-flex items-center gap-2 px-6 py-2 glass rounded-full border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-[0.4em] shadow-[0_0_20px_rgba(127,90,240,0.2)]"
+            className="inline-flex items-center gap-2 px-4 md:px-6 py-2 glass rounded-full border border-primary/20 text-primary text-[8px] md:text-[10px] font-bold uppercase tracking-[0.3em] md:tracking-[0.4em] shadow-[0_0_20px_rgba(127,90,240,0.2)]"
           >
             <Sparkles size={12} className="animate-pulse" />
             <motion.span
@@ -70,7 +73,7 @@ export default function Hero() {
             variants={titleVariants}
             initial="hidden"
             animate="visible"
-            className="text-6xl md:text-[10rem] font-bold tracking-tighter leading-[0.9] select-none"
+            className="text-5xl sm:text-7xl md:text-8xl lg:text-[9rem] xl:text-[10rem] font-bold tracking-tighter leading-[0.9] select-none"
           >
             {name.split(" ").map((word, wordIdx) => (
               <span key={wordIdx} className="inline-block whitespace-nowrap mr-4 last:mr-0">

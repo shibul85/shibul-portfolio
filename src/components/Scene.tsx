@@ -298,34 +298,45 @@ interface SceneProps {
 }
 
 export default function Scene({ modelType }: SceneProps) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <div className="fixed inset-0 -z-10 bg-[#010103] pointer-events-none">
       <div className="absolute inset-0 grid-bg mask-radial opacity-5 pointer-events-none" />
       <Canvas 
-        camera={{ position: [0, 0, 10], fov: 45 }} 
+        camera={{ position: [0, 0, isMobile ? 12 : 10], fov: 45 }} 
         dpr={[1, 2]}
         gl={{ antialias: true, alpha: true }}
       >
         <ambientLight intensity={0.4} />
         <pointLight position={[10, 10, 10]} intensity={2} color="#00E5FF" />
         <pointLight position={[-10, -10, -10]} intensity={1.5} color="#7F5AF0" />
-        <Stars radius={100} depth={50} count={8000} factor={4} saturation={0} fade speed={1} />
+        <Stars radius={100} depth={50} count={isMobile ? 4000 : 8000} factor={4} saturation={0} fade speed={1} />
         <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.2}>
-          <TransitionWrapper isVisible={modelType === 'globe'}>
-            <Globe />
-          </TransitionWrapper>
-          <TransitionWrapper isVisible={modelType === 'brain'}>
-            <Brain />
-          </TransitionWrapper>
-          <TransitionWrapper isVisible={modelType === 'rocket'}>
-            <Rocket />
-          </TransitionWrapper>
-          <TransitionWrapper isVisible={modelType === 'glove'}>
-            <Hand />
-          </TransitionWrapper>
-          <TransitionWrapper isVisible={modelType === 'sphere'}>
-            <DistortedSphere />
-          </TransitionWrapper>
+          <group scale={isMobile ? 0.7 : 1} position={[0, isMobile ? 1 : 0, 0]}>
+            <TransitionWrapper isVisible={modelType === 'globe'}>
+              <Globe />
+            </TransitionWrapper>
+            <TransitionWrapper isVisible={modelType === 'brain'}>
+              <Brain />
+            </TransitionWrapper>
+            <TransitionWrapper isVisible={modelType === 'rocket'}>
+              <Rocket />
+            </TransitionWrapper>
+            <TransitionWrapper isVisible={modelType === 'glove'}>
+              <Hand />
+            </TransitionWrapper>
+            <TransitionWrapper isVisible={modelType === 'sphere'}>
+              <DistortedSphere />
+            </TransitionWrapper>
+          </group>
         </Float>
       </Canvas>
     </div>

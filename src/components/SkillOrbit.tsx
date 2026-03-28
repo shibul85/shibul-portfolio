@@ -26,10 +26,10 @@ export default function SkillOrbit() {
   ];
 
   return (
-    <div className="relative w-full h-[400px] md:h-[600px] flex items-center justify-center overflow-hidden">
+    <div className="relative w-full h-[350px] sm:h-[450px] md:h-[600px] flex items-center justify-center overflow-hidden">
       {/* Orbit Rings */}
-      <div className="absolute w-[300px] h-[300px] md:w-[500px] md:h-[500px] border border-white/5 rounded-full" />
-      <div className="absolute w-[200px] h-[200px] md:w-[350px] md:h-[350px] border border-white/5 rounded-full" />
+      <div className="absolute w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] md:w-[500px] md:h-[500px] border border-white/5 rounded-full" />
+      <div className="absolute w-[150px] h-[150px] sm:w-[250px] sm:h-[250px] md:w-[350px] md:h-[350px] border border-white/5 rounded-full" />
       
       {/* Skill Icons */}
       {skills.map((skill, i) => {

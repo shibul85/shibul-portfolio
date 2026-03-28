@@ -51,34 +51,34 @@ export default function Contact() {
             </p>
           </div>
 
-          <div className="space-y-6">
-            <div className="flex items-center gap-6 p-6 glass rounded-2xl border border-white/5">
-              <div className="p-4 bg-primary/10 rounded-xl text-primary">
+          <div className="space-y-4 md:space-y-6">
+            <div className="flex items-center gap-4 md:gap-6 p-4 md:p-6 glass rounded-2xl border border-white/5">
+              <div className="p-3 md:p-4 bg-primary/10 rounded-xl text-primary shrink-0">
                 <Mail size={24} />
               </div>
-              <div>
-                <p className="text-xs text-white/40 uppercase tracking-wider">Email</p>
-                <p className="text-lg font-medium">shibulkumarpadhan85@gmail.com</p>
+              <div className="min-w-0">
+                <p className="text-[10px] md:text-xs text-white/40 uppercase tracking-wider">Email</p>
+                <p className="text-sm md:text-lg font-medium truncate">shibulkumarpadhan85@gmail.com</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-6 p-6 glass rounded-2xl border border-white/5">
-              <div className="p-4 bg-accent/10 rounded-xl text-accent">
+            <div className="flex items-center gap-4 md:gap-6 p-4 md:p-6 glass rounded-2xl border border-white/5">
+              <div className="p-3 md:p-4 bg-accent/10 rounded-xl text-accent shrink-0">
                 <Phone size={24} />
               </div>
-              <div>
-                <p className="text-xs text-white/40 uppercase tracking-wider">Phone</p>
-                <p className="text-lg font-medium">+91 9556106188</p>
+              <div className="min-w-0">
+                <p className="text-[10px] md:text-xs text-white/40 uppercase tracking-wider">Phone</p>
+                <p className="text-sm md:text-lg font-medium">+91 9556106188</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-6 p-6 glass rounded-2xl border border-white/5">
-              <div className="p-4 bg-secondary/10 rounded-xl text-secondary">
+            <div className="flex items-center gap-4 md:gap-6 p-4 md:p-6 glass rounded-2xl border border-white/5">
+              <div className="p-3 md:p-4 bg-secondary/10 rounded-xl text-secondary shrink-0">
                 <MapPin size={24} />
               </div>
-              <div>
-                <p className="text-xs text-white/40 uppercase tracking-wider">Location</p>
-                <p className="text-lg font-medium">Sonpur, Odisha, India</p>
+              <div className="min-w-0">
+                <p className="text-[10px] md:text-xs text-white/40 uppercase tracking-wider">Location</p>
+                <p className="text-sm md:text-lg font-medium">Sonpur, Odisha, India</p>
               </div>
             </div>
           </div>

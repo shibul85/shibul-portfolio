@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { ExternalLink, Github, HeartPulse, Code, Rocket, Sparkles } from 'lucide-react';
+import { cn } from '../lib/utils';
 
 export default function Projects() {
   const projects = [
@@ -50,7 +51,7 @@ export default function Projects() {
         </a>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {projects.map((project, i) => (
           <motion.div
             key={project.title}
@@ -59,7 +60,10 @@ export default function Projects() {
             viewport={{ once: true }}
             transition={{ delay: i * 0.2 }}
             whileHover={{ y: -10 }}
-            className={`group relative p-8 glass rounded-[2rem] border border-white/5 overflow-hidden flex flex-col h-full ${project.highlight ? 'lg:col-span-2' : ''}`}
+            className={cn(
+              "group relative p-6 md:p-8 glass rounded-[2rem] border border-white/5 overflow-hidden flex flex-col h-full",
+              project.highlight ? "lg:col-span-2" : ""
+            )}
           >
             <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-100 transition-opacity duration-700`} />
             

@@ -59,18 +59,18 @@ export default function About() {
           className="relative group"
         >
           <div className="absolute -inset-4 bg-gradient-to-tr from-primary/20 to-accent/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500" />
-          <div className="relative glass rounded-3xl p-8 border border-white/10 flex items-center justify-center overflow-hidden min-h-[400px]">
-            <div className="text-center space-y-6">
+          <div className="relative glass rounded-3xl p-6 md:p-8 border border-white/10 flex items-center justify-center overflow-hidden min-h-[300px] md:min-h-[400px]">
+            <div className="text-center space-y-4 md:space-y-6">
               <div className="space-y-2">
-                <h3 className="text-3xl font-bold tracking-tighter">Shibul Kumar Padhan</h3>
-                <p className="text-primary font-mono text-sm uppercase tracking-[0.3em]">Creative Developer</p>
+                <h3 className="text-2xl md:text-3xl font-bold tracking-tighter">Shibul Kumar Padhan</h3>
+                <p className="text-primary font-mono text-xs md:text-sm uppercase tracking-[0.2em] md:tracking-[0.3em]">Creative Developer</p>
               </div>
               
-              <p className="text-white/50 max-w-sm mx-auto leading-relaxed">
+              <p className="text-white/50 max-w-sm mx-auto leading-relaxed text-sm md:text-base">
                 Dedicated to building high-performance digital solutions with a focus on clean code and exceptional user experiences.
               </p>
 
-              <div className="flex justify-center gap-4 pt-4">
+              <div className="flex justify-center gap-4 pt-2 md:pt-4">
                 <a href="https://www.linkedin.com/in/shibul-kuamar-padhan-116857274" target="_blank" className="p-4 glass rounded-full hover:text-primary transition-all hover:scale-110">
                   <Linkedin size={24} />
                 </a>
