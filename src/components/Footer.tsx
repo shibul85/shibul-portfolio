@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowUp, Instagram } from 'lucide-react';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -24,6 +24,9 @@ export default function Footer() {
           </a>
           <a href="https://www.linkedin.com/in/shibul-kuamar-padhan-116857274" target="_blank" className="p-3 glass rounded-full hover:text-primary transition-colors">
             <Linkedin size={20} />
+          </a>
+          <a href="https://www.instagram.com/i.shibulkumarpadhan?igsh=MW5zYzk3bjgwNjJ5Nw==" target="_blank" className="p-3 glass rounded-full hover:text-primary transition-colors">
+            <Instagram size={20} />
           </a>
           <a href="mailto:shibulkumarpadhan85@gmail.com" className="p-3 glass rounded-full hover:text-primary transition-colors">
             <Mail size={20} />

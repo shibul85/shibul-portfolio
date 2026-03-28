@@ -21,6 +21,7 @@ export default function Contact() {
 
       if (!response.ok) throw new Error('Failed to send message');
 
+      const data = await response.json();
       setIsSubmitting(false);
       confetti({
         particleCount: 100,
@@ -28,7 +29,7 @@ export default function Contact() {
         origin: { y: 0.6 },
         colors: ['#7F5AF0', '#00E5FF', '#2CB67D']
       });
-      alert('Message sent successfully! Check your inbox.');
+      alert(data.message || 'Message sent successfully! I will get back to you soon.');
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
       console.error("Error sending message:", error);

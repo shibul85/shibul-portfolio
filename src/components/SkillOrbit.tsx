@@ -1,7 +1,19 @@
 import { motion } from 'motion/react';
 import { Code2, Globe, Layout, Palette, Terminal, Zap, Database, Github, Rocket } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export default function SkillOrbit() {
+  const [radius, setRadius] = useState(150);
+
+  useEffect(() => {
+    const updateRadius = () => {
+      setRadius(window.innerWidth < 768 ? 120 : 220);
+    };
+    updateRadius();
+    window.addEventListener('resize', updateRadius);
+    return () => window.removeEventListener('resize', updateRadius);
+  }, []);
+
   const skills = [
     { icon: Code2, label: 'React' },
     { icon: Database, label: 'Firebase' },
@@ -22,8 +34,15 @@ export default function SkillOrbit() {
       {/* Skill Icons */}
       {skills.map((skill, i) => {
         const angle = (i / skills.length) * Math.PI * 2;
-        const radius = 150; // Base radius for mobile
-        const mdRadius = 220; // Radius for desktop
+        
+        // Generate keyframes for a full circle
+        const steps = 8;
+        const xKeyframes = Array.from({ length: steps + 1 }, (_, step) => 
+          Math.cos(angle + (step / steps) * Math.PI * 2) * radius
+        );
+        const yKeyframes = Array.from({ length: steps + 1 }, (_, step) => 
+          Math.sin(angle + (step / steps) * Math.PI * 2) * radius
+        );
         
         return (
           <motion.div
@@ -32,23 +51,15 @@ export default function SkillOrbit() {
             initial={{ opacity: 0 }}
             animate={{
               opacity: 1,
-              x: [
-                Math.cos(angle) * radius,
-                Math.cos(angle + Math.PI * 2) * radius
-              ],
-              y: [
-                Math.sin(angle) * radius,
-                Math.sin(angle + Math.PI * 2) * radius
-              ],
+              x: xKeyframes,
+              y: yKeyframes,
             }}
             transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear",
-              delay: i * 0.5
+              x: { duration: 20, repeat: Infinity, ease: "linear" },
+              y: { duration: 20, repeat: Infinity, ease: "linear" },
+              opacity: { duration: 1, delay: i * 0.2 }
             }}
             style={{
-              // Use CSS variables for responsive radius if needed, or just handle via Framer
               left: '50%',
               top: '50%',
               marginLeft: '-24px',

@@ -38,7 +38,7 @@ export default function Navbar() {
       </div>
 
       <div className="flex items-center gap-4">
-        <a href="https://instagram.com" target="_blank" className="text-white/50 hover:text-white transition-colors">
+        <a href="https://www.instagram.com/i.shibulkumarpadhan?igsh=MW5zYzk3bjgwNjJ5Nw==" target="_blank" className="text-white/50 hover:text-white transition-colors">
           <Instagram size={18} />
         </a>
         <a href="https://facebook.com" target="_blank" className="text-white/50 hover:text-white transition-colors">

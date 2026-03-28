@@ -37,6 +37,7 @@ function DistortedSphere() {
   const sphereRef = useRef<THREE.Mesh>(null);
   const glowRef = useRef<THREE.Mesh>(null);
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const timer = useMemo(() => new THREE.Timer(), []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -49,8 +50,9 @@ function DistortedSphere() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  useFrame((state) => {
-    const time = state.clock.getElapsedTime();
+  useFrame((_state) => {
+    timer.update();
+    const time = timer.getElapsed();
     if (sphereRef.current) {
       sphereRef.current.rotation.y = time * 0.2;
       sphereRef.current.rotation.x = THREE.MathUtils.lerp(sphereRef.current.rotation.x, mouse.y * 0.5, 0.05);
@@ -96,6 +98,7 @@ function DistortedSphere() {
 function Globe() {
   const globeRef = useRef<THREE.Group>(null);
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const timer = useMemo(() => new THREE.Timer(), []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -108,8 +111,9 @@ function Globe() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  useFrame((state) => {
-    const time = state.clock.getElapsedTime();
+  useFrame((_state) => {
+    timer.update();
+    const time = timer.getElapsed();
     if (globeRef.current) {
       globeRef.current.rotation.y = time * 0.1;
       globeRef.current.rotation.x = THREE.MathUtils.lerp(globeRef.current.rotation.x, mouse.y * 0.1, 0.05);
@@ -146,6 +150,7 @@ function Globe() {
 function Hand() {
   const handRef = useRef<THREE.Group>(null);
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const timer = useMemo(() => new THREE.Timer(), []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -158,11 +163,13 @@ function Hand() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  useFrame((state) => {
+  useFrame((_state) => {
+    timer.update();
+    const time = timer.getElapsed();
     if (handRef.current) {
-      handRef.current.rotation.y = state.clock.getElapsedTime() * 0.3;
+      handRef.current.rotation.y = time * 0.3;
       handRef.current.rotation.x = THREE.MathUtils.lerp(handRef.current.rotation.x, mouse.y * 0.4, 0.05);
-      handRef.current.position.y = Math.sin(state.clock.getElapsedTime()) * 0.3;
+      handRef.current.position.y = Math.sin(time) * 0.3;
     }
   });
 
@@ -193,6 +200,7 @@ function Hand() {
 function Brain() {
   const brainRef = useRef<THREE.Group>(null);
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const timer = useMemo(() => new THREE.Timer(), []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -205,9 +213,11 @@ function Brain() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  useFrame((state) => {
+  useFrame((_state) => {
+    timer.update();
+    const time = timer.getElapsed();
     if (brainRef.current) {
-      brainRef.current.rotation.y = state.clock.getElapsedTime() * 0.2;
+      brainRef.current.rotation.y = time * 0.2;
       brainRef.current.rotation.x = THREE.MathUtils.lerp(brainRef.current.rotation.x, mouse.y * 0.3, 0.05);
       brainRef.current.rotation.z = THREE.MathUtils.lerp(brainRef.current.rotation.z, mouse.x * 0.1, 0.05);
     }
@@ -234,6 +244,7 @@ function Brain() {
 function Rocket() {
   const rocketRef = useRef<THREE.Group>(null);
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const timer = useMemo(() => new THREE.Timer(), []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -246,10 +257,12 @@ function Rocket() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  useFrame((state) => {
+  useFrame((_state) => {
+    timer.update();
+    const time = timer.getElapsed();
     if (rocketRef.current) {
-      rocketRef.current.rotation.y = state.clock.getElapsedTime() * 0.5;
-      rocketRef.current.position.y = Math.sin(state.clock.getElapsedTime()) * 0.2;
+      rocketRef.current.rotation.y = time * 0.5;
+      rocketRef.current.position.y = Math.sin(time) * 0.2;
       rocketRef.current.rotation.z = THREE.MathUtils.lerp(rocketRef.current.rotation.z, -mouse.x * 0.5, 0.05);
       rocketRef.current.rotation.x = THREE.MathUtils.lerp(rocketRef.current.rotation.x, mouse.y * 0.5, 0.05);
     }
